@@ -1,0 +1,16 @@
+{
+    "name": "sunny/streamlabs_coding_assignment",
+    "description": "stream labs coding assignment",
+    "require": {
+        "google/apiclient": "^2.1"
+    },
+    "require-dev": {
+        "google/apiclient": "^2.1"
+    },
+    "authors": [
+        {
+            "name": "sunny",
+            "email": "sunnyding602@qq.com"
+        }
+    ]
+}

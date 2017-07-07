@@ -1,3 +1,7 @@
+client_secrets\.json
+composer\.lock
+
+#node ignore section below
 # Logs
 logs
 *.log
@@ -57,3 +61,5 @@ typings/
 # dotenv environment variables file
 .env
 
+
+/vendor/
