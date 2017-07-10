@@ -48,7 +48,7 @@ $(function() {
 var options = {
   width: 854,
   height: 480,
-  channel: "streamerhouse"
+  channel: "dantehow"
 };
 var player = new Twitch.Player("player_div_id", options);
 player.setVolume(0.5);

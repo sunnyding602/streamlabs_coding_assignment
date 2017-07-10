@@ -70,15 +70,12 @@ class User{
     public function get_user_by_session_id($session_id){
         $dbh = DB::get_dbh();
         $sql = 'SELECT * FROM user where session_id = ?';
-
         $sth = $dbh->prepare($sql);
         $sth->execute(array($session_id));
         $rows = $sth->fetchAll();
-
         if(count($rows) != 1){
             return null;
         }
-
         return $rows[0];
     }
 
