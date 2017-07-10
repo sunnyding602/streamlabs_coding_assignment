@@ -11,12 +11,14 @@ or in the "license" file accompanying this file. This file is distributed on an 
     Web Socket to Twitch chat. The important part events are onopen and onmessage.
 */
 const messagesElem = $("#messages");
+const chat = document.getElementById("chat");
+const msgCntPerSec = $("#msgCntPerSec");
+
 var displayMessages = function(parsed){
     msgReceived();
     messagesElem.append($("<li>").html('<strong>'+parsed.username + "</strong>: " + parsed.message));
+    chat.scrollTop = chat.scrollHeight;
 }
-
-const msgCntPerSec = $("#msgCntPerSec");
 
 let messages = [];
 
