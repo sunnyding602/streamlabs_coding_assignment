@@ -19,6 +19,7 @@ let msgReceived = function() {
   messages.push(Date.now());
   delOutDatedMsg();
 };
+
 let delOutDatedMsg = function() {
   for (let i = 0; i < messages.length; i++) {
     if (
@@ -31,6 +32,7 @@ let delOutDatedMsg = function() {
     }
   }
 };
+
 Date.prototype.Format = function(fmt) {
   var o = {
     "M+": this.getMonth() + 1,
@@ -55,10 +57,6 @@ Date.prototype.Format = function(fmt) {
   return fmt;
 };
 
-//app.get('/', function(req, res){
-//  res.sendFile(__dirname + '/index.html');
-//});
-
 setInterval(function() {
   delOutDatedMsg();
   io.emit("stats", messages.length);
@@ -73,6 +71,7 @@ io.on("connection", function(socket) {
 
   socket.on("send-message", msg => {
     msgReceived();
+    
     connection.query(
       "INSERT INTO chat (username, msg, room, ctime) VALUES (?, ?, ?, ?)",
       [
@@ -83,9 +82,9 @@ io.on("connection", function(socket) {
       ],
       function(error, results, fields) {
         if (error) throw error;
-        //console.log(results);
       }
     );
+
     io.to(msg.room).emit("receive-message", msg);
   });
 });
