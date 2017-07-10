@@ -13,6 +13,7 @@ N/A, since deploy skill will not be judged...
 #The arhitecture:
 I use PHP for developing the frontend related work, Node.JS for chat-service and MariaDB for storage. Here's the reason:
 We should really use a language to its strength. Admittedly, PHP can do websocket, but it's better to leave the work to Node.JS. 
+I am not using PHP framework so that you can know that I know how to build a login system and how to build a webapp from scratch.
 
 
 #Problems encountered
