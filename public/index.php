@@ -32,6 +32,7 @@ $socket_uri = 'http://' . $_SERVER['HTTP_HOST'].':3000';
                 }
 ?>
                     <a href="/stats.php" class="button" >Stats</a>
+                    <a href="/stats.html" class="button" >NEW!! Stats(read chat msg via irc)</a>
             </li>
         </nav>
 
