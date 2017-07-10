@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 13px Helvetica, Arial;
+}
+
+#chat {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  width: 340px;
+  background: #efeef1;
+  height: 100%;
+  overflow: auto;
+}
+
+form {
+  background: #efeef1;
+  padding: 3px;
+  position: fixed;
+  width: 340px;
+  bottom: 0;
+}
+
+form textarea {
+  border: 0;
+  padding: 10px;
+  width: 90%;
+  margin-right: .5%;
+}
+
+.button {
+  background: #6441a4;
+  color: white;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0 0.5rem;
+  transition: background .12s ease-in, color .12s ease-in, box-shadow .12s ease-in;
+  font-weight: 300;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.pos-fixed {
+  position: fixed;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.top-0 {
+  top: 0;
+}
+
+#messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#messages li {
+  padding: 5px 10px;
+}
+
+#messages {
+  margin-bottom: 79px
+}
+
+.top-nav {
+  height: 50px;
+  background: #4b367c;
+  z-index: 3;
+}
+
+#player_div_id {
+  position: fixed;
+  top: 51px;
+  right: 400px;
+}
+
+.login {
+  list-style-type: none;
+  float: right;
+  position: relative;
+  top: 12.5px;
+  right: 10px;
+}
+
+#user_display_name {
+  display: inline-block;
+  color: white;
+  padding-right: 10px;
+  font-weight: 200;
+}

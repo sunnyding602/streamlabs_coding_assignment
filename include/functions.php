@@ -52,9 +52,18 @@ function is_login(){
 }
 
 function logout(){
-    setcookie("sessionid", "", time() - 3600);
+    setcookie("session_id", "", time() - 3600);
     //session_unset();
 }
 
+
+function listChannelMine($service, $part, $params) {
+    $params = array_filter($params);
+    $response = $service->channels->listChannels(
+        $part,
+        $params
+    );
+    return array($response['modelData']['items'][0]['id'], $response['modelData']['items'][0]['snippet']['title']);
+}
 
 
