@@ -5,6 +5,7 @@
   "dependencies": {
     "express": "^4.15.2",
     "mysql": "github:mysqljs/mysql",
+    "node-twitchbot": "^2.0.4",
     "socket.io": "^1.7.3"
   },
   "scripts": {

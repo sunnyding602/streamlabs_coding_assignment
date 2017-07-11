@@ -1,3 +1,11 @@
+const TwitchBot = require("node-twitchbot");
+
+const Bot = new TwitchBot({
+  username: "sunnyding602",
+  oauth: "oauth:phohofvz0dtr0vrne6i47y3tg9m7e4",
+  channel: "loserfruit"
+});
+
 var app = require("express")();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
@@ -33,6 +41,16 @@ let delOutDatedMsg = function() {
   }
 };
 
+let saveMsg = function(username, text, channel) {
+  connection.query(
+    "INSERT INTO chat (username, msg, room, ctime) VALUES (?, ?, ?, ?)",
+    [username, text, channel, new Date().Format("yyyy-MM-dd hh:mm:ss")],
+    function(error, results, fields) {
+      if (error) throw error;
+    }
+  );
+};
+
 Date.prototype.Format = function(fmt) {
   var o = {
     "M+": this.getMonth() + 1,
@@ -62,32 +80,39 @@ setInterval(function() {
   io.emit("stats", messages.length);
 }, 1000);
 
-io.on("connection", function(socket) {
-  socket.on("join-room", data => {
-    socket.join(data.room);
-
-    socket.emit("joined-room", data.room);
-  });
-
-  socket.on("send-message", msg => {
-    msgReceived();
-    
-    connection.query(
-      "INSERT INTO chat (username, msg, room, ctime) VALUES (?, ?, ?, ?)",
-      [
-        msg.userName,
-        msg.text,
-        msg.room,
-        new Date().Format("yyyy-MM-dd hh:mm:ss")
-      ],
-      function(error, results, fields) {
-        if (error) throw error;
+/* Connect bot to Twitch IRC */
+Bot.connect()
+  .then(() => {
+    /* Listen for all messages in channel */
+    Bot.listen((err, chatter) => {
+      if (err) {
+        console.log(err);
+      } else {
+        msgReceived();
+        //console.log(chatter.user + ': ' + chatter.msg);
+        msg = { text: chatter.msg, room: "general", userName: chatter.user };
+        saveMsg(chatter.user, chatter.msg, chatter.channel);
+        io.to(msg.room).emit("receive-message", msg);
       }
-    );
+    });
 
-    io.to(msg.room).emit("receive-message", msg);
+    io.on("connection", function(socket) {
+      socket.on("join-room", data => {
+        socket.join(data.room);
+
+        socket.emit("joined-room", data.room);
+      });
+
+      socket.on("send-message", msg => {
+        console.log(msg.text);
+        Bot.msg(msg.text);
+      });
+    });
+  })
+  .catch(err => {
+    console.log("Connection error!");
+    console.log(err);
   });
-});
 
 http.listen(port, function() {
   console.log("listening on *:" + port);
