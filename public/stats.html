@@ -33,6 +33,9 @@ or in the "license" file accompanying this file. This file is distributed on an 
     <script>
     $(document).ready(function(){
         $('.connect').click(function(){
+            if(!!window.chatClientHandle){
+                window.chatClientHandle.close();
+            }
             window.chatClientHandle = new chatClient({
                 channel: '#'+$("#channel").val(),
                 username: 'sunnyding602',
