@@ -21,7 +21,7 @@ or in the "license" file accompanying this file. This file is distributed on an 
         <button class="connect btn">Connect to chat</button>
         <button class="disconnect btn">Disconnect from chat</button>
         <label for="channel">change the channel id here:</label>
-        <input id="channel" type="text" placeholder="#channel" value="dantehow"/>
+        <input id="channel" type="text" placeholder="#channel" value="mitchjones"/>
         <h3><span id="msgCntPerSec">0</span> messages per second</h3>
     </div>
 
@@ -33,16 +33,17 @@ or in the "license" file accompanying this file. This file is distributed on an 
     <script>
     $(document).ready(function(){
         $('.connect').click(function(){
-            window.chatClient = new chatClient({
+            window.chatClientHandle = new chatClient({
                 channel: '#'+$("#channel").val(),
                 username: 'sunnyding602',
                 password: 'oauth:phohofvz0dtr0vrne6i47y3tg9m7e4',
             });
-            window.chatClient.open();
+            window.chatClientHandle.open();
         });
         $('.disconnect').click(function(){
-            window.chatClient.close();
+            window.chatClientHandle.close();
         });
+        $('.connect').click();
     });
     
     
