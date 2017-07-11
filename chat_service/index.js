@@ -91,7 +91,7 @@ Bot.connect()
         msgReceived();
         //console.log(chatter.user + ': ' + chatter.msg);
         msg = { text: chatter.msg, room: "general", userName: chatter.user };
-        saveMsg(chatter.user, chatter.msg, chatter.channel);
+        saveMsg(chatter.user, !chatter.msg ? '' chatter.msg: , chatter.channel);
         io.to(msg.room).emit("receive-message", msg);
       }
     });
